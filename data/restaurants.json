@@ -1,0 +1,31 @@
+{
+  "restaurants": [
+    {
+      "id": "1",
+      "name": "Del Sole Pizza",
+      "tags": ["pizza", "italian"],
+      "regularClose": ["Mon", "Tue"],
+      "area": "Annupuri",
+      "address": "123 whatever street",
+      "phone": "0136-22-1146"
+    },
+    {
+      "id": "2",
+      "name": "Guzu Guzu",
+      "tags": ["bread", "cafe"],
+      "regularClose": ["Mon", "Tue", "Wed"],
+      "address": "123 whatever street",
+      "area": "Hirafu",
+      "phone": "0136-12-3456"
+    },
+    {
+      "id": "3",
+      "name": "Abu-cha",
+      "tags": ["Japanese", "izakaya"],
+      "regularClose": [],
+      "address": "Hirafu zaka",
+      "area": "Hirafu",
+      "phone": "0136-22-7777"
+    }
+  ]
+}
