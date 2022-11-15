@@ -34,8 +34,19 @@ describe('AppController (e2e)', () => {
       .expect((response) => {
         expect(response.body.id).not.toBeUndefined();
         expect(response.body.name).toBe('My Best Pizza');
+      })
+      .then((response) => {
+        const restauId = response.body.id;
+
+        return request(app.getHttpServer())
+          .get(`/restaurants/${restauId}`)
+          .expect(200)
+          .expect((response) => {
+            expect(response.body.id).not.toBeUndefined();
+            expect(response.body.name).toBe('My Best Pizza');
+            expect(response.body.id).toBe(restauId);
+          });
       });
-    // Testing the Get request afterwards
   });
 
   afterAll(async () => {
