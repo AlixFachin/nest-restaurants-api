@@ -26,6 +26,11 @@ export class RestaurantsService {
   async add(restaurantData: Omit<Restaurant, 'id'>) {
     const newRestau = new Restaurant();
     newRestau.name = restaurantData.name;
+    newRestau.phone = restaurantData.phone;
+    newRestau.regularClose = restaurantData.regularClose;
+    newRestau.tags = restaurantData.tags;
+    newRestau.area = restaurantData.area;
+
     await this.restaurantRepository.save(newRestau);
     return newRestau;
   }
