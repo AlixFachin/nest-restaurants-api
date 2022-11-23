@@ -1,0 +1,24 @@
+name: Checks
+on: pull_request # event list
+
+env: # environment variables
+  NODE_VERSION: 16
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install NodeJS
+        uses: actions/checkout@v2
+      - name: Install packages
+        run: npm install
+      - name: Linting
+        run: npm run lint:check
+  test:
+    name: Test(jest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run test
