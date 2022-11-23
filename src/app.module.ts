@@ -2,10 +2,12 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { RestaurantsModule } from './restaurants/restaurants.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
+  controllers: [AppController],
   imports: [
     RestaurantsModule,
     ConfigModule.forRoot(),
@@ -15,6 +17,9 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
       autoLoadEntities: true,
       synchronize: true, // TODO: Change this when deploying in production!
     }),
+    AuthModule,
+    UsersModule,
   ],
+  providers: [],
 })
 export class AppModule {}
