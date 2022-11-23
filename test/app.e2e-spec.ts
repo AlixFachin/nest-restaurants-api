@@ -3,6 +3,8 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 
+const data = import('../data/restaurants.json');
+
 describe('AppController (e2e)', () => {
   let app: INestApplication;
 
@@ -26,14 +28,27 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/restaurants (POST)', () => {
+  it('/restaurants (POST)', async () => {
+    const restauList = (await data).restaurants;
+
+    const testRestau = restauList[0];
+
     return request(app.getHttpServer())
       .post('/restaurants')
-      .send({ restaurant: { name: 'My Best Pizza' } })
+      .send({
+        restaurant: { ...testRestau },
+      })
       .expect(201)
       .expect((response) => {
         expect(response.body.id).not.toBeUndefined();
-        expect(response.body.name).toBe('My Best Pizza');
+        expect(response.body.name).toBe(testRestau.name);
+        expect(response.body.tags).toStrictEqual(testRestau.tags);
+        expect(response.body.regularClose).toStrictEqual(
+          testRestau.regularClose,
+        );
+        expect(response.body.area).toBe(testRestau.area);
+        expect(response.body.address).toBe(testRestau.address);
+        expect(response.body.phone).toBe(testRestau.phone);
       })
       .then((response) => {
         const restauId = response.body.id;
@@ -43,7 +58,7 @@ describe('AppController (e2e)', () => {
           .expect(200)
           .expect((response) => {
             expect(response.body.id).not.toBeUndefined();
-            expect(response.body.name).toBe('My Best Pizza');
+            expect(response.body.name).toBe(testRestau.name);
             expect(response.body.id).toBe(restauId);
           });
       });

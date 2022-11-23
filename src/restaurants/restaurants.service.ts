@@ -30,6 +30,7 @@ export class RestaurantsService {
     newRestau.regularClose = restaurantData.regularClose;
     newRestau.tags = restaurantData.tags;
     newRestau.area = restaurantData.area;
+    newRestau.address = restaurantData.address;
 
     await this.restaurantRepository.save(newRestau);
     return newRestau;
