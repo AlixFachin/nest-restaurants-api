@@ -26,4 +26,29 @@ TBD for the structure
 
 ## Entities and Tables
 
-- Users: System users
+- Users:
+  - System User, Admin User
+- Restaurant and User connection:
+  - One user can manage many restaurants
+  - Restaurant has only one User manager (acceptable restriction at this point)
+  - Only Admin can add a "management" relation between User and Restaurant
+  - Restaurant has coordinates, address, area
+- Likes
+  - One user can "like" many restaurants
+  - Only the user can add relations between themselves and the restaurants
+
+### ENDPOINTS
+
+- Users
+  - Create User: Anyone
+  - Read User: Admin + User
+  - Update User: Admin + User
+  - Delete User:
+  - Reset Password: Anyone (should we throttle this endpoint to avoid abuse? Maybe add captcha)
+- Restaurant
+  - Create Restaurant: Admin
+  - Read Restaurant: Anyone
+  - Like Restaurant: User logged
+  - Add a Management Relationship: Admin
+  - Remove a Management relationship: Admin
+  - Update a Management relationship: Admin
