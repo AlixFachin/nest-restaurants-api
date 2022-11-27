@@ -12,6 +12,19 @@
 
 - `TBD`
 
+## Authentication
+
+- Authentication is done with **JWT**, associating the features of `Nest.js` and `Passport.js`.
+
+## Authorization
+
+Authorization rules:
+
+- An admin user can do CRUD on any Entity / Database
+- Non-logged users can read all restaurant information, cannot read the "wishlist" of users
+- Each Restaurant owner can edit data regarding their own restaurant, cannot edit data related to other restaurants
+- Each User can CRUD their own "restaurant favorites" list, but cannot see nor edit lists of other people
+
 ## Installation
 
 ```bash
